@@ -7,11 +7,11 @@ import random
 import os
 
 # ============= PAGE CONFIG =============
-st.set_page_config(page_title="🌱 Plant Disease Predictor", layout="wide")
+st.set_page_config(page_title="🌱 Plant Disease Detector", layout="wide")
 
 # ============= CONFIG ==================
 FRAMEWORK = "dummy"   # change later to "torch" / "tensorflow" / "sklearn"
-IMAGE_SIZE = (224, 224)
+IMAGE_SIZE = (224, 224) #change later to whatever the model was trained on
 CLASS_NAMES = ["Healthy", "Powdery Mildew", "Leaf Spot", "Rust"]
 
 # ============= LOAD MODEL ==============
@@ -153,33 +153,48 @@ st.markdown(
     }
 
     /* ------------------ MODERN CARDS ------------------ */
-    .card {
-        padding: 24px;
-        border-radius: 16px;
-        background: rgba(30, 41, 59, 0.8);
-        border: 1px solid rgba(71, 85, 105, 0.4);
-        margin-bottom: 20px;
-        color: #e2e8f0 !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        text-align: center;
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-        position: relative;
-    }
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(16, 185, 129, 0.2);
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        cursor: pointer;
-    }
-    .card h3 {
-        background: linear-gradient(135deg, #10b981, #34d399);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 12px;
-        font-size: 1.4rem;
-    }
+.card {
+    min-height: 160px;           /* <- ensures cards in a row are same minimum height */
+    height: 100%;
+    display: flex;               /* flexbox layout */
+    flex-direction: column;      
+    justify-content: flex-start; /* top-align content for consistent visual baseline */
+    align-items: flex-start;
+    padding: 24px;
+    border-radius: 16px;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(71, 85, 105, 0.4);
+    margin-bottom: 20px;
+    color: #e2e8f0 !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    text-align: left;            /* left text aligns better with top alignment */
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    cursor: pointer;
+}
+.card h3 {
+    width: 100%;
+    margin: 0 0 12px 0;
+    background: linear-gradient(135deg, #10b981, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.4rem;
+}
+.card p {
+    margin: 0;
+    margin-top: 6px;
+    color: #cbd5e1 !important;
+    line-height: 1.6;
+}
+
+
 
     /* ------------------ HERO SECTION ------------------ */
     .hero { 
@@ -288,6 +303,8 @@ st.markdown(
         border-radius: 12px;
         border: 1px solid rgba(16, 185, 129, 0.3);
     }
+   
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -298,7 +315,7 @@ st.sidebar.title("🌿 Plant Disease App")
 st.sidebar.markdown("Detect plant leaf diseases easily 🌱")
 
 # ============= TABS =====================
-home, predict, library = st.tabs(["🏠 Home", "🔍 Predict", "📚 Disease Library"])
+home, predict, library, help_tab = st.tabs(["🏠 Home", "🔍 Predict", "📚 Disease Library", "❓ Help"])
 
 with home:
     banner_src = "images/banner.jpg"
@@ -307,7 +324,7 @@ with home:
         <div class="hero">
             <img src="{banner_src}" class="hero-img">
             <div class="hero-text">
-                <h1>🌱 Plant Disease Prediction App</h1>
+                <h1>🌱 Plant Disease Detector App</h1>
                 <p>Upload a leaf photo → See if it's healthy or diseased → Get cure & prevention tips.</p>
             </div>
         </div>
@@ -322,7 +339,7 @@ with home:
             """
             <div class="card">
                 <h3>📸 Upload</h3>
-                <p>Upload a clear photo of the plant leaf for instant analysis.</p>
+                <p>Upload a clear and sharp photo of the plant leaf to allow for accurate and instant analysis.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -342,7 +359,7 @@ with home:
             """
             <div class="card">
                 <h3>💡 Solutions</h3>
-                <p>Get actionable prevention tips and expert treatment guidance.</p>
+                <p>Get actionable prevention tips and effective treatment guidance.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -417,3 +434,125 @@ with library:
     if search:
         df = df[df["disease"].astype(str).str.contains(search, case=False, na=False)]
     st.dataframe(df, width="stretch")
+
+
+with help_tab:
+    st.header("❓ Help & User Guide")
+
+    # Leaf photo tips
+    st.markdown(
+        """
+        <div class="hero">
+            <h1>🌱 How to Take Good Leaf Photos</h1>
+            <p>Follow these simple steps to get the best results when detecting plant diseases.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown(
+            """
+            <div class="card">
+                <h3>📸 Upload a Clear Leaf Image</h3>
+                <p>Photograph a single leaf against a <b>plain, well-lit background</b>, avoiding distortions and clutter.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        st.markdown(
+            """
+            <div class="card">
+                <h3>💡 Good Lighting</h3>
+                <p>Ensure the leaf is well lit. Avoid harsh shadows, glare, or overly dark areas, which can hide important features.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    with col2:
+        st.markdown(
+            """
+            <div class="card">
+                <h3>🌿 Focus on the Leaf</h3>
+                <p>Make the leaf the main subject. Avoid including multiple leaves or busy backgrounds.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        st.markdown(
+            """
+            <div class="card">
+                <h3>🚀 Get Your Results</h3>
+                <p>Upload the leaf image in the Predict tab. The AI will predict whether it’s healthy or diseased and show treatment & prevention tips.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    st.markdown(
+        """
+        <div class="card" style="text-align: center;">
+            <h3>✅ Tip for Best Accuracy</h3>
+            <p>Clear, centered, and well-lit leaf photos on a plain background give the most accurate results.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # App usage instructions
+    st.markdown(
+        """
+        <div class="hero">
+            <h1>📱 How to Use the App</h1>
+            <p>Quick guide to analyzing leaves and exploring plant disease information.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown(
+            """
+            <div class="card">
+                <h3>🔍 Use the Predict Tab</h3>
+                <p>Go to the <b>Predict</b> tab, upload a clear photo of your plant leaf as instructed, and let our AI analyze it.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        st.markdown(
+            """
+            <div class="card">
+                <h3>🌿 Get Results & Remedies</h3>
+                <p>If a disease is detected, the app shows the disease name, confidence level, and detailed treatment & prevention tips.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    with col2:
+        st.markdown(
+            """
+            <div class="card">
+                <h3>📚 Explore Disease Library</h3>
+                <p>Go to the <b>Disease Library</b> tab to search for other diseases, and get tips for their prevention and cure.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        st.markdown(
+            """
+            <div class="card">
+                <h3>💡 Take Action</h3>
+                <p>Use the information from both tabs to protect your plants and prevent the disease from spreading further.</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+
