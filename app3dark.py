@@ -331,11 +331,9 @@ st.sidebar.markdown("Detect plant leaf diseases easily 🌱")
 home, predict, library, help_tab = st.tabs(["🏠 Home", "🔍 Predict", "📚 Disease Library", "❓ Help"])
 
 with home:
-    banner_src = "images/banner.jpg"
     st.markdown(
-        f"""
+        """
         <div class="hero">
-            <img src="{banner_src}" class="hero-img">
             <div class="hero-text">
                 <h1>🌱 Plant Disease Detector App</h1>
                 <p>Upload a leaf photo → See if it's healthy or diseased → Get cure & prevention tips.</p>
