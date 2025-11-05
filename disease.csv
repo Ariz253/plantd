@@ -1,5 +1,39 @@
 disease,cure,prevention
-Powdery Mildew,Use fungicide spray,Ensure good air circulation
-Leaf Spot,Remove affected leaves,Avoid overhead watering
-Rust,Apply sulfur spray,Rotate crops
-Healthy,No treatment needed,Maintain proper watering & sunlight
+Apple___Apple_scab,Apply fungicides like captan or mancozeb,Prune trees for good airflow and remove fallen leaves
+Apple___Black_rot,Remove and destroy infected fruit and leaves,Use disease-free seeds and maintain tree hygiene
+Apple___Cedar_apple_rust,Use fungicides containing myclobutanil,Remove nearby juniper hosts to break disease cycle
+Apple___healthy,No treatment needed,Maintain good pruning and watering
+Blueberry___healthy,No treatment needed,Ensure proper soil drainage and sunlight
+Cherry_(including_sour)___Powdery_mildew,Apply sulfur-based fungicide,Prune branches to improve air circulation
+Cherry_(including_sour)___healthy,No treatment needed,Maintain proper spacing between plants
+Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,Apply fungicide like azoxystrobin,Rotate crops and avoid continuous corn planting
+Corn_(maize)___Common_rust_,Use resistant hybrids and apply fungicide,Plant rust-resistant varieties and remove infected debris
+Corn_(maize)___Northern_Leaf_Blight,Apply fungicide if severe,Use disease-resistant hybrids and crop rotation
+Corn_(maize)___healthy,No treatment needed,Monitor for early symptoms and maintain field hygiene
+Grape___Black_rot,Use fungicides like myclobutanil,Prune and destroy mummified berries
+Grape___Esca_(Black_Measles),Remove infected vines and avoid pruning wounds,Improve soil drainage and avoid excessive nitrogen
+Grape___Leaf_blight_(Isariopsis_Leaf_Spot),Apply copper-based fungicide,Remove affected leaves and provide good ventilation
+Grape___healthy,No treatment needed,Provide good sunlight and drainage
+Orange___Haunglongbing_(Citrus_greening),Remove and destroy infected trees,Control psyllid insects and use certified seedlings
+Peach___Bacterial_spot,Use copper-based bactericides,Plant resistant cultivars and avoid overhead irrigation
+Peach___healthy,No treatment needed,Prune for sunlight penetration and airflow
+"Pepper,_bell___Bacterial_spot",Apply copper-based fungicides,Use disease-free seeds and rotate crops
+"Pepper,_bell___healthy",No treatment needed,Ensure good drainage and avoid waterlogging
+Potato___Early_blight,Apply fungicides like chlorothalonil,Practice crop rotation and avoid wet foliage
+Potato___Late_blight,Use fungicides containing mancozeb,Destroy infected tubers and avoid dense planting
+Potato___healthy,No treatment needed,Use certified disease-free seed potatoes
+Raspberry___healthy,No treatment needed,Prune regularly and ensure good air circulation
+Soybean___healthy,No treatment needed,Rotate crops and avoid excessive moisture
+Squash___Powdery_mildew,Apply sulfur or neem oil spray,Provide good air flow and avoid overcrowding
+Strawberry___Leaf_scorch,Remove infected leaves and use fungicide,Water at soil level and avoid leaf wetness
+Strawberry___healthy,No treatment needed,Ensure proper spacing and sunlight
+Tomato___Bacterial_spot,Apply copper-based fungicide,Use disease-free seeds and avoid overhead watering
+Tomato___Early_blight,Apply fungicides like chlorothalonil,Rotate crops and remove plant debris
+Tomato___Late_blight,Use fungicides with mancozeb or metalaxyl,Destroy infected plants and avoid watering at night
+Tomato___Leaf_Mold,Apply fungicide like chlorothalonil,Provide ventilation in greenhouses
+Tomato___Septoria_leaf_spot,Apply copper-based fungicide,Remove infected leaves and mulch soil
+Tomato___Spider_mites Two-spotted_spider_mite,Use miticides or neem oil,Keep leaves moist and control dust
+Tomato___Target_Spot,Apply fungicide and remove affected leaves,Ensure good airflow and avoid high humidity
+Tomato___Tomato_Yellow_Leaf_Curl_Virus,Remove infected plants immediately,Control whitefly populations
+Tomato___Tomato_mosaic_virus,Remove infected plants and disinfect tools,Use resistant varieties and wash hands after handling plants
+Tomato___healthy,No treatment needed,Maintain balanced watering and nutrition
