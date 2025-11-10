@@ -1,6 +1,6 @@
 streamlit==1.49.1
-pandas
-pillow
-scikit-learn
-torch        # if you use PyTorch
-tensorflow   # if you use TensorFlow 
+numpy==2.3.2
+pandas==2.3.2
+tensorflow==2.20.0
+scikit-learn==1.7.1
+pillow==11.3.0
