@@ -1,4 +1,4 @@
-# 🌱 Plant Disease Detector
+# 🌱 Agro Health
 
 An AI-powered web application for detecting plant leaf diseases. Upload a leaf image and get instant disease identification, treatment recommendations, and prevention strategies.
 
@@ -105,14 +105,6 @@ The app will open in your browser at `http://localhost:8501`
 2. **Disease Library Tab**: Browse and search the disease database
 3. **Help Tab**: Learn how to take quality leaf photos for best results
 
-## 📁 Project Structure
 
-```
-plant-disease-detector/
-├── app.py              # Main application
-├── disease.csv         # Disease database
-├── model/              # Model files
-└── requirements.txt    # Dependencies
-```
 
 
