@@ -7,7 +7,7 @@ import random
 import os
 
 # ============= PAGE CONFIG =============
-st.set_page_config(page_title="🌱 Plant Disease Detector", layout="wide")
+st.set_page_config(page_title="🌱 Agro Health", layout="wide")
 
 # ============= CONFIG ==================
 FRAMEWORK = "tensorflow"   # change later to "torch" / "tensorflow" / "sklearn"
@@ -324,7 +324,7 @@ st.markdown(
 )
 
 # ============= SIDEBAR ==================
-st.sidebar.title("🌿 Plant Disease App")
+st.sidebar.title("🌿 Agro Health")
 st.sidebar.markdown("Detect plant leaf diseases easily 🌱")
 
 # ============= TABS =====================
@@ -335,7 +335,7 @@ with home:
         """
         <div class="hero">
             <div class="hero-text">
-                <h1>🌱 Plant Disease Detector App</h1>
+                <h1>🌱 Agro Health</h1>
                 <p>Upload a leaf photo → See if it's healthy or diseased → Get cure & prevention tips.</p>
             </div>
         </div>
