@@ -328,7 +328,7 @@ st.sidebar.title("🌿 Agro Health")
 st.sidebar.markdown("Detect plant leaf diseases easily 🌱")
 
 # ============= TABS =====================
-home, predict, library, help_tab = st.tabs(["🏠 Home", "🔍 Predict", "📚 Disease Library", "❓ Help"])
+home, predict, library, help_tab = st.tabs(["🏠 Home", "🔍 Detect", "📚 Disease Library", "❓ Help"])
 
 with home:
     st.markdown(
@@ -388,7 +388,7 @@ with home:
     )
 
 with predict:
-    st.markdown('<div class="main-header"><h2>🔍 Upload a Leaf & Predict Disease</h2></div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header"><h2>🔍 Upload a Leaf & Detect Disease</h2></div>', unsafe_allow_html=True)
 
     file = st.file_uploader("Upload a leaf image", type=["jpg", "jpeg", "png"])
 
@@ -396,8 +396,12 @@ with predict:
         image = Image.open(file).convert("RGB")
 
         # Center the uploaded image
-        st.markdown("<h5 style='text-align: center; color: #10b981;'>📸 Uploaded Leaf</h5>", unsafe_allow_html=True)
-        st.image(image, caption="Uploaded Leaf", width="stretch")
+        # Center the uploaded image using columns
+        col1, col2, col3 = st.columns([1, 1, 1])
+
+        with col2:
+            st.markdown("<h5 style='text-align: center; color: #10b981;'>📸 Uploaded Leaf</h5>", unsafe_allow_html=True)
+            st.image(image, caption="Uploaded Leaf", width=400)
 
         with st.spinner("Analyzing leaf..."):
             label, conf = predict_disease(image)
@@ -417,7 +421,7 @@ with predict:
         st.markdown(
             f"""
             <div class="prediction-card">
-                <h3 style="color: #10b981; margin-bottom: 20px;">🌿 AI Prediction Results</h3>
+                <h3 style="color: #10b981; margin-bottom: 20px;">🌿 AI Detection Results</h3>
                 <p style="font-size: 1.2rem;">
                     <b>Disease Detected:</b> 
                     <span style="color: #34d399;">{label}</span>
@@ -511,7 +515,7 @@ with help_tab:
             """
             <div class="card">
                 <h3>🚀 Get Your Results</h3>
-                <p>Upload the leaf image in the Predict tab. The AI will predict whether it’s healthy or diseased and show treatment & prevention tips.</p>
+                <p>Upload the leaf image in the Detect tab. The AI will detect whether it’s healthy or diseased and show treatment & prevention tips.</p>
             </div>
             """,
             unsafe_allow_html=True
@@ -544,8 +548,8 @@ with help_tab:
         st.markdown(
             """
             <div class="card">
-                <h3>🔍 Use the Predict Tab</h3>
-                <p>Go to the <b>Predict</b> tab, upload a clear photo of your plant leaf as instructed, and let our AI analyze it.</p>
+                <h3>🔍 Use the Detect Tab</h3>
+                <p>Go to the <b>Detect</b> tab, upload a clear photo of your plant leaf as instructed, and let our AI analyze it.</p>
             </div>
             """,
             unsafe_allow_html=True
