@@ -7,7 +7,7 @@ import random
 import os
 
 # ============= PAGE CONFIG =============
-st.set_page_config(page_title="🌱 Agro Health", layout="wide")
+st.set_page_config(page_title="🌱 Agro Health", layout="wide",initial_sidebar_state="collapsed")
 
 # ============= CONFIG ==================
 FRAMEWORK = "tensorflow"   # change later to "torch" / "tensorflow" / "sklearn"
@@ -126,6 +126,8 @@ st.markdown(
         background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
         border-right: 1px solid #475569;
     }
+
+    
     [data-testid="stSidebar"] h1,
     [data-testid="stSidebar"] h2,
     [data-testid="stSidebar"] h3,
@@ -323,9 +325,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ============= SIDEBAR ==================
-st.sidebar.title("🌿 Agro Health")
-st.sidebar.markdown("Detect plant leaf diseases easily 🌱")
+# # ============= SIDEBAR ==================
+# st.sidebar.title("🌿 Agro Health")
+# st.sidebar.markdown("Detect plant leaf diseases easily 🌱")
 
 # ============= TABS =====================
 home, predict, library, help_tab = st.tabs(["🏠 Home", "🔍 Detect", "📚 Disease Library", "❓ Help"])
