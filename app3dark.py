@@ -362,7 +362,7 @@ with home:
             """
             <div class="card">
                 <h3>🔍 Detect</h3>
-                <p>Our advanced AI model detects diseases with great precision and high speed.</p>
+                <p>Our advanced AI model detects diseases with great precision and high speed to provide accurate results.</p>
             </div>
             """,
             unsafe_allow_html=True,
