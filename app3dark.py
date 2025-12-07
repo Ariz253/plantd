@@ -362,7 +362,7 @@ with home:
             """
             <div class="card">
                 <h3>🔍 Detect</h3>
-                <p>Our advanced AI model detects diseases with precision and speed.</p>
+                <p>Our advanced AI model detects diseases with great precision and high speed.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -372,7 +372,7 @@ with home:
             """
             <div class="card">
                 <h3>💡 Solutions</h3>
-                <p>Get actionable prevention tips and effective treatment guidance.</p>
+                <p>Get actionable prevention tips and effective treatment guidance for the diseases.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -388,6 +388,27 @@ with home:
         """,
         unsafe_allow_html=True,
     )
+
+#helper function to clean the disease name
+def clean_label(label: str):
+    """
+    Splits raw class label into plant name and disease name.
+    Removes underscores, extra symbols, and formatting noise.
+    """
+    parts = label.split("___")
+    
+    plant = parts[0].replace("_", " ").replace("(including sour)", "Cherry").strip()
+    disease = parts[1] if len(parts) > 1 else "Healthy"
+    
+    # fix formatting
+    disease = disease.replace("_", " ").replace("-", " ").strip()
+    disease = disease.replace("  ", " ")
+    
+    # special edge cases
+    disease = disease.replace("healthy", "Healthy").strip()
+    plant = plant.replace("  ", " ")
+
+    return plant, disease
 
 with predict:
     st.markdown('<div class="main-header"><h2>🔍 Upload a Leaf & Detect Disease</h2></div>', unsafe_allow_html=True)
@@ -407,6 +428,7 @@ with predict:
 
         with st.spinner("Analyzing leaf..."):
             label, conf = predict_disease(image)
+            plant, disease = clean_label(label)
 
         # Build optional confidence HTML
         if conf is not None:
@@ -425,8 +447,12 @@ with predict:
             <div class="prediction-card">
                 <h3 style="color: #10b981; margin-bottom: 20px;">🌿 AI Detection Results</h3>
                 <p style="font-size: 1.2rem;">
-                    <b>Disease Detected:</b> 
-                    <span style="color: #34d399;">{label}</span>
+                    <b>Plant:</b> 
+                    <span style="color: #34d399;">{plant}</span>
+                </p>
+                <p style="font-size: 1.2rem;">
+                    <b>Disease:</b> 
+                    <span style="color: #34d399;">{disease}</span>
                 </p>
                 {conf_html}
             </div>
@@ -458,14 +484,78 @@ with predict:
         else:
             st.warning("⚠️ No treatment information available for this disease in our database.")
 
+#custom disease library dataframe styler
+def style_dark(df: pd.DataFrame):
+    return (
+        df.style
+        .set_properties(**{
+            "background-color": "rgba(30, 41, 59, 0.8)",
+            "color": "#e2e8f0",
+            "border-color": "#475569",
+            "border-width": "1px",
+            "border-style": "solid",
+        })
+        .set_table_styles([
+            {"selector": "thead th", "props": [
+                ("background-color", "rgba(51, 65, 85, 0.9)"),
+                ("color", "#10b981"),
+                ("font-weight", "bold"),
+                ("border-color", "#475569"),
+                ("padding", "8px"),
+            ]},
+            {"selector": "tbody tr:hover", "props": [
+                ("background-color", "rgba(16, 185, 129, 0.15)"),
+            ]},
+            {"selector": "tbody td", "props": [
+                ("padding", "10px"),
+            ]}
+        ])
+        .hide(axis="index")
+    )
+
 with library:
     st.markdown('<div class="main-header"><h2>📚 Disease Knowledge Library</h2></div>', unsafe_allow_html=True)
-    search = st.text_input("🔎 Search for a disease", placeholder="Type disease name...")
+    
+    # Center the search input too
+    col1, col2, col3 = st.columns([0.05, 0.9, 0.05])
+    
+    with col2:
+        search = st.text_input("🔎 Search for a disease", placeholder="Type disease name...")
+    
     df = disease_info.copy()
     if search:
         df = df[df["disease"].astype(str).str.contains(search, case=False, na=False)]
-    st.dataframe(df, width="stretch")
+    
+    styled_df = style_dark(df)
 
+    # Use columns to center the table
+    col1, col2, col3 = st.columns([0.05, 0.9, 0.05])
+    
+    with col2:
+        st.markdown("""
+        <style>
+        .styled-table-wrapper {
+            height: 500px;
+            overflow-y: auto;
+            overflow-x: auto;
+            border: 1px solid rgba(71, 85, 105, 0.4);
+            border-radius: 12px;
+            padding: 10px;
+            background: rgba(30, 41, 59, 0.8);
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .styled-table-wrapper table {
+            width: 100% !important;
+            margin: 0 auto;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # Display styled dataframe HTML
+        st.markdown(f'<div class="styled-table-wrapper">{styled_df.to_html()}</div>', unsafe_allow_html=True)
 
 with help_tab:
     st.header("❓ Help & User Guide")
@@ -497,7 +587,7 @@ with help_tab:
             """
             <div class="card">
                 <h3>💡 Good Lighting</h3>
-                <p>Ensure the leaf is well lit. Avoid harsh shadows, glare, or overly dark areas, which can hide important features.</p>
+                <p>Ensure that the leaf is well litin the photo. Avoid harsh shadows, glare, or overly dark areas, which can hide important features.</p>
             </div>
             """,
             unsafe_allow_html=True
