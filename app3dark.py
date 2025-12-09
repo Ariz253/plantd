@@ -352,7 +352,7 @@ with home:
             """
             <div class="card">
                 <h3>📸 Upload</h3>
-                <p>Upload a clear and sharp photo of the plant leaf to allow for accurate and instant analysis.</p>
+                <p>Upload a clear and sharp photo of the plant leaf to allow for accurate and instant disease detection.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -372,7 +372,7 @@ with home:
             """
             <div class="card">
                 <h3>💡 Solutions</h3>
-                <p>Get actionable prevention tips and effective treatment guidance for the diseases.</p>
+                <p>Get actionable prevention tips and effective treatment guidance to fight and prevent the diseases.</p>
             </div>
             """,
             unsafe_allow_html=True,
